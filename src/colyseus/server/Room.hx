@@ -1,4 +1,5 @@
 package colyseus.server;
+import haxe.extern.EitherType;
 import colyseus.server.presence.*;
 import js.lib.Promise;
 
@@ -37,7 +38,7 @@ extern class RoomOf<State, Metadata> {
 	var reconnections: Dynamic;
 	var isDisconnecting: Bool;
 	function new(?presence:Presence):Void;
-	function onMessage(type:String, handler:Client->Dynamic->Void):Void;
+	function onMessage(type:EitherType<String, Int>, handler:Client->Dynamic->Void):Void;
 	function onCreate(options:Map<String,Dynamic>):Void;
 	function onJoin(client:Client, ?options:Map<String,Dynamic>, ?auth:Dynamic):haxe.extern.EitherType<Void, Promise<Dynamic>>;
 	function onLeave(client:Client, ?consented:Bool):haxe.extern.EitherType<Void, Promise<Dynamic>>;
